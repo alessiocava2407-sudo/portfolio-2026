@@ -19,6 +19,9 @@ export const metadata = {
   title: "Alessio Cavallaro — Portfolio",
   description:
     "Sviluppatore Web & Studente di Ingegneria Informatica | Music Producer & Polistrumentista.",
+  verification: {
+    google: 'ELpA87fur9z6XxU4VkNM19rLJWVoI8npmOLielWTzgs',
+  },
 };
 
 export default function RootLayout({ children }) {

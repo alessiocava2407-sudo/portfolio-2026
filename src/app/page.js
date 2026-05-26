@@ -8,6 +8,7 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
+import ScrollRevealText from "../components/ScrollRevealText";
 
 /* ═══════════════════════════════════════════════════════
    CONSTANTS & EASING
@@ -182,7 +183,6 @@ const SKILLS_WEB = [
 
 const SKILLS_AUDIO = [
   ["Polistrumentista", "Chitarra · Basso · Synth"],
-  ["Ableton Live", "Session · Produzione"],
   ["FL Studio", "Mixing · Mastering"],
   ["Sound Design", "Sintesi · Sampling · Foley"],
   ["Modding Artigianale", "Circuiti · Saldatura · MIDI"],
@@ -564,7 +564,7 @@ function renderProjectVisual(id, accent) {
       return (
         <div className="h-full w-full flex flex-col p-5 gap-3">
           <div className="text-center py-3">
-            <span className="text-[7px] font-sans uppercase tracking-[0.4em] text-white/20 block">Dal 1968</span>
+            <span className="text-[7px] font-sans uppercase tracking-[0.4em] text-white/20 block">Dal 1964</span>
             <span className="text-[16px] font-serif italic text-white/60 block mt-1">Tappezzeria Madaudo</span>
             <span className="text-[7px] font-sans uppercase tracking-[0.2em] text-white/15 block mt-1">Acireale · Tradizione artigianale</span>
           </div>
@@ -830,7 +830,7 @@ export default function Page() {
 
       <main>
         {/* ═══════════════ HERO — Multi-layer parallax ═══════════════ */}
-        <section id="top" className="min-h-screen flex flex-col justify-end px-4 sm:px-6 md:px-12 lg:px-24 pb-12 sm:pb-16 md:pb-24 pt-24 sm:pt-32 relative overflow-hidden">
+        <section id="top" className="min-h-[85svh] md:min-h-screen flex flex-col justify-start md:justify-end px-4 sm:px-6 md:px-12 lg:px-24 pb-12 sm:pb-16 md:pb-24 pt-32 sm:pt-32 relative overflow-hidden">
           {/* Decorative arc */}
           <motion.svg
             className="absolute top-[20%] right-[10%] w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] pointer-events-none hidden md:block"
@@ -846,7 +846,7 @@ export default function Page() {
               transition={{ duration: 2.5, ease: easeApple, delay: 1.6 }} />
           </motion.svg>
 
-          <motion.div className="max-w-[1400px] mx-auto w-full relative z-10" style={{ opacity: heroOpacity }}>
+          <motion.div className="max-w-[1400px] mx-auto w-full relative z-10 flex flex-col flex-1" style={{ opacity: heroOpacity }}>
             {/* Corner coordinates */}
             <motion.div
               className="absolute top-0 right-0 text-[9px] font-sans text-white/15 text-right hidden md:block"
@@ -939,7 +939,7 @@ export default function Page() {
               viewport={{ once: false, margin: "-50px" }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.5, ease: easeApple, delay: 1.4 }}
-              className="mt-16 md:mt-24 flex items-center justify-between"
+              className="mt-auto pt-16 md:pt-24 flex items-center justify-between"
               style={{ y: heroCtaY, opacity: heroCtaOpacity, scale: heroCtaScale }}
             >
               <div className="flex items-center gap-4 text-[10px] font-sans uppercase tracking-[0.3em] text-white/20">
@@ -984,6 +984,9 @@ export default function Page() {
           </motion.div>
         </div>
 
+        {/* ═══════════════ SCROLL REVEAL ═══════════════ */}
+        <ScrollRevealText />
+
         {/* ═══════════════ STUDIO ═══════════════ */}
         <section id="studio" className="px-6 md:px-12 py-32 md:py-48">
           <div className="max-w-[1400px] mx-auto">
@@ -1002,7 +1005,9 @@ export default function Page() {
                     <div className="flex justify-between text-[9px] font-sans uppercase tracking-[0.3em] text-white/20">
                       <span>Plate · AC</span><span>MMXXVI</span>
                     </div>
-                    <div className="font-serif italic text-[min(24vw,220px)] leading-[0.75] text-white/[0.04] -mb-5 -ml-3 select-none">A</div>
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="font-serif italic text-[min(24vw,220px)] leading-none text-white/[0.04] select-none">A</div>
+                    </div>
                     <div className="flex justify-between text-[9px] font-sans uppercase tracking-[0.3em] text-white/20">
                       <span>Catania</span><span className="tabular-nums">37.5079° N</span>
                     </div>
@@ -1096,7 +1101,7 @@ export default function Page() {
               <div>
                 <motion.div {...reveal}>
                   <div className="flex justify-between mb-8 text-[10px] font-sans uppercase tracking-[0.3em] text-white/20">
-                    <span>Audio &amp; Hardware</span><span className="tabular-nums">B — 05</span>
+                    <span>Audio &amp; Hardware</span><span className="tabular-nums">B — 04</span>
                   </div>
                 </motion.div>
                 {SKILLS_AUDIO.map(([name, detail], i) => (
