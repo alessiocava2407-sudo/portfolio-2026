@@ -111,6 +111,7 @@ const projectsData = [
     category: "ISTITUZIONALE",
     accent: mono,
     gradient: "radial-gradient(ellipse at 50% 80%, rgba(255,255,255,0.05) 0%, transparent 50%)",
+    link: "https://www.caiacireale.it/",
   },
   {
     id: "03",
@@ -138,6 +139,7 @@ const projectsData = [
     category: "UTILITY",
     accent: mono,
     gradient: "radial-gradient(ellipse at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%)",
+    link: "https://producer-tools-ale.netlify.app/",
   },
   {
     id: "06",
@@ -156,6 +158,7 @@ const projectsData = [
     category: "ARTIGIANATO",
     accent: mono,
     gradient: "radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 50%)",
+    link: "https://tappezzeria-madaudo.free.nf/",
   },
   {
     id: "08",
@@ -165,6 +168,7 @@ const projectsData = [
     category: "HOSPITALITY",
     accent: mono,
     gradient: "radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.05) 0%, transparent 50%)",
+    link: "https://dimora-akis.free.nf/",
   },
 ];
 
@@ -714,9 +718,19 @@ function ProjectCard({ project, index }) {
         <span className="block text-[9px] md:text-[10px] font-sans uppercase tracking-[0.25em] text-white/20 mb-5">
           {project.category}
         </span>
-        <h3 className="font-serif text-[20px] sm:text-[24px] md:text-[28px] lg:text-[34px] leading-[1.1] tracking-[-0.015em] mb-5 text-white/90">
-          {project.title}<span className="text-white/20">.</span>
-        </h3>
+        <div className="flex items-center justify-between gap-4 mb-5">
+          <h3 className="font-serif text-[20px] sm:text-[24px] md:text-[28px] lg:text-[34px] leading-[1.1] tracking-[-0.015em] text-white/90">
+            {project.title}<span className="text-white/20">.</span>
+          </h3>
+          {project.link && (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className="shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/[0.15] hover:scale-105 transition-all duration-300 group">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/40 group-hover:text-white transition-colors">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          )}
+        </div>
         <p className="text-white/35 text-[13px] sm:text-[14px] leading-[1.75] mb-8 font-light">
           {project.description}
         </p>
@@ -1129,6 +1143,15 @@ export default function Page() {
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                     <rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 6-10 7L2 6" />
                   </svg>Email
+                </motion.a>
+                <motion.a href="https://linktr.ee/prodd.ale" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 bg-white/[0.04] text-white border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.15] rounded-full px-8 py-4 text-[14px] font-semibold font-sans w-full sm:w-auto transition-colors duration-500"
+                  whileHover={{ y: -3, scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.4, ease: easeApple }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>Linktree
                 </motion.a>
               </div>
             </motion.div>

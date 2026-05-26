@@ -8,6 +8,8 @@
   --font-serif: var(--font-instrument), "Instrument Serif", ui-serif, Georgia, serif;
 }
 
+:root { --nav-height: 64px; }
+
 *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
 
@@ -20,6 +22,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  padding-top: var(--nav-height);
   line-height: 1.6;
 }
 

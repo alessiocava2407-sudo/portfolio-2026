@@ -2,7 +2,7 @@ export default function Navbar() {
   return (
     <nav
       className="fixed top-0 left-0 right-0 flex items-center justify-between px-6 py-5 lg:px-10"
-      style={{ zIndex: 50 }}
+      style={{ zIndex: 50, height: "var(--nav-height)" }}
     >
       {/* Logo */}
       <a
