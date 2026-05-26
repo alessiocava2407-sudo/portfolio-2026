@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alessio Cavallaro — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans:    ['"Bricolage Grotesque"','ui-sans-serif','system-ui'],
+        display: ['"Bricolage Grotesque"','ui-sans-serif','system-ui'],
+        serif:   ['"Instrument Serif"','ui-serif','Georgia'],
+      },
+      colors: {
+        ink: { 50:'#f5f3ef', 100:'#e8e6e1', 200:'#c9c7c1', 300:'#a3a09a',
+               400:'#7c7a74', 500:'#5a5854', 600:'#3b3a37', 700:'#262522',
+               800:'#161513', 900:'#0c0b0a', 950:'#070605' }
+      }
+    }
+  }
+};
+</script>
+<style>
+  :root {
+    --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-apple-io: cubic-bezier(0.65, 0, 0.35, 1);
+    --ink-50:#f5f3ef; --ink-100:#e8e6e1; --ink-300:#a3a09a; --ink-500:#5a5854;
+    --ink-700:#262522; --ink-900:#0c0b0a; --ink-950:#070605;
+  }
+  * { -webkit-tap-highlight-color: transparent; }
+  html, body { background: var(--ink-950); color: var(--ink-50); -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family:'Bricolage Grotesque', ui-sans-serif, system-ui;
+    font-optical-sizing: auto;
+    font-feature-settings:"ss01","ss02","cv11";
+    letter-spacing:-0.012em;
+    overflow-x:hidden;
+  }
+  ::selection { background: rgba(245,243,239,.18); color:#fff; }
+
+  /* Ambient monochrome */
+  .bg-stage { position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; background: var(--ink-950); }
+  .haze { position:absolute; border-radius:9999px; filter:blur(140px); mix-blend-mode:screen; }
+  .h1 { width:70vmax; height:70vmax; left:-25vmax; top:-30vmax;
+        background: radial-gradient(circle at 40% 40%, #1a1916 0%, #0e0d0b 50%, transparent 75%);
+        animation: d1 38s var(--ease-apple-io) infinite alternate; }
+  .h2 { width:60vmax; height:60vmax; right:-25vmax; top:30vh;
+        background: radial-gradient(circle at 50% 50%, #1d1c19 0%, #0d0c0a 55%, transparent 75%);
+        animation: d2 44s var(--ease-apple-io) infinite alternate; }
+  .h3 { width:55vmax; height:55vmax; left:20vw; bottom:-30vmax;
+        background: radial-gradient(circle at 60% 40%, #161513 0%, #0a0908 55%, transparent 75%);
+        animation: d3 42s var(--ease-apple-io) infinite alternate; }
+  @keyframes d1 { to { transform: translate3d(6vw,8vh,0); } }
+  @keyframes d2 { to { transform: translate3d(-8vw,-4vh,0); } }
+  @keyframes d3 { to { transform: translate3d(4vw,-6vh,0); } }
+
+  /* grain + vignette */
+  .grain::after {
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity:.9; mix-blend-mode:overlay;
+  }
+  .vignette {
+    position:fixed; inset:0; pointer-events:none; z-index:1;
+    background:
+      radial-gradient(120% 70% at 50% -10%, rgba(255,255,255,.04), transparent 60%),
+      radial-gradient(120% 80% at 50% 110%, rgba(0,0,0,.7), transparent 60%);
+  }
+
+  /* progress bar */
+  .progress-rail { position:fixed; top:0; left:0; right:0; height:2px; z-index:60; background:rgba(245,243,239,.05); }
+  .progress-bar { height:100%; width:0%; background: linear-gradient(90deg, transparent, var(--ink-50)); transition: width .08s linear; }
+
+  /* Reveal (entry — sparingly) */
+  [data-reveal] {
+    opacity:0; transform: translate3d(0, 24px, 0);
+    transition: opacity 1s var(--ease-apple), transform 1.1s var(--ease-apple);
+    transition-delay: var(--d, 0ms); will-change: transform, opacity;
+  }
+  [data-reveal].in { opacity:1; transform: translate3d(0,0,0); }
+
+  /* glass */
+  .glass {
+    background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+    border: 1px solid rgba(255,255,255,.06);
+    backdrop-filter: blur(28px) saturate(120%);
+    -webkit-backdrop-filter: blur(28px) saturate(120%);
+    box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 30px 80px -20px rgba(0,0,0,.55);
+  }
+  .glass-soft {
+    background: rgba(255,255,255,.022);
+    border: 1px solid rgba(255,255,255,.05);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  }
+  .hairline { height:1px; background: linear-gradient(90deg, transparent, rgba(245,243,239,.18), transparent); }
+
+  .btn-light { background: var(--ink-50); color: var(--ink-950); transition: transform .5s var(--ease-apple), box-shadow .5s var(--ease-apple); font-weight: 600; }
+  .btn-light:hover { transform: translateY(-1px); box-shadow: 0 14px 36px -12px rgba(245,243,239,.22); }
+  .btn-ghost { background: transparent; color: var(--ink-50); border:1px solid rgba(245,243,239,.18); transition: all .5s var(--ease-apple); font-weight: 500; }
+  .btn-ghost:hover { background: rgba(245,243,239,.04); border-color: rgba(245,243,239,.32); }
+
+  .nav-pill {
+    background: rgba(7,6,5,.6); border:1px solid rgba(245,243,239,.07);
+    backdrop-filter: blur(22px) saturate(140%); -webkit-backdrop-filter: blur(22px) saturate(140%);
+  }
+
+  .editorial-num { font-variant-numeric: tabular-nums; font-feature-settings:"tnum"; }
+
+  /* —————————————————————————————
+     HERO TITLE — letter mask + scatter
+     ————————————————————————————— */
+  .hero-title {
+    font-weight: 600;
+    line-height: 0.86;
+    letter-spacing: -0.05em;
+  }
+  .hero-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.05em; /* keep descenders from being clipped by mask */
+  }
+  .h-letter {
+    display: inline-block;
+    transform: translate3d(0, 110%, 0) rotate(2deg);
+    filter: blur(14px);
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    transform-origin: 50% 100%;
+  }
+  .h-letter.lit {
+    transform: translate3d(0, 0, 0) rotate(0);
+    filter: blur(0);
+    opacity: 1;
+    transition:
+      transform 1.1s var(--ease-apple),
+      opacity   .9s var(--ease-apple),
+      filter    .7s var(--ease-apple);
+    transition-delay: calc(var(--i, 0) * 55ms + 250ms);
+  }
+  .h-space { display: inline-block; width: .28em; }
+
+  /* Scrub words */
+  .scrub-word { color: rgba(245,243,239,.14); transition: color .25s var(--ease-apple); display:inline; }
+  .scrub-word.lit { color: var(--ink-50); }
+
+  /* Horizontal strip */
+  .h-rail { will-change: transform; }
+
+  /* Marquee */
+  @keyframes mq { to { transform: translate3d(-50%,0,0); } }
+  .marquee { animation: mq 38s linear infinite; }
+
+  /* Link */
+  .link { position: relative; display: inline-block; }
+  .link::after {
+    content:""; position:absolute; left:0; right:0; bottom:-3px; height:1px;
+    background: currentColor; transform: scaleX(.25); transform-origin: left;
+    transition: transform .6s var(--ease-apple);
+  }
+  .link:hover::after { transform: scaleX(1); }
+
+  .vrl { writing-mode: vertical-rl; }
+
+  /* Mobile-safe defaults for the work section */
+  @media (max-width: 767px) {
+    #work-rail-wrap { position: static !important; height: auto !important; overflow: visible !important; }
+    #h-rail {
+      position: static !important;
+      display: flex; flex-direction: column;
+      width: 100% !important; height: auto !important;
+      transform: none !important;
+    }
+    .work-panel { width: 100% !important; height: auto !important; min-height: auto !important; padding-top: 2rem !important; padding-bottom: 2rem !important; }
+    .work-panel .panel-visual,
+    .work-panel .panel-copy { transform: none !important; opacity: 1 !important; }
+    #work-section { height: auto !important; }
+  }
+
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .haze { animation: none !important; }
+    .h-letter, .h-letter.lit { transition: none !important; transform: none !important; filter: none !important; opacity: 1 !important; }
+    .marquee { animation: none !important; }
+  }
+</style>
+</head>
+
+<body class="grain antialiased">
+
+  <div class="progress-rail"><div id="progress" class="progress-bar"></div></div>
+
+  <div class="bg-stage">
+    <div class="haze h1"></div>
+    <div class="haze h2"></div>
+    <div class="haze h3"></div>
+  </div>
+  <div class="vignette"></div>
+
+  <!-- NAV -->
+  <header class="fixed top-5 left-1/2 -translate-x-1/2 z-50">
+    <nav class="nav-pill rounded-full pl-3 pr-1.5 py-1.5 flex items-center gap-1 text-[12.5px] text-ink-200">
+      <a href="#top" class="pr-3 mr-1 border-r border-white/10">
+        <span class="font-serif italic text-[15px] text-ink-50">A. Cavallaro</span>
+      </a>
+      <a href="#about"    class="px-3 py-1.5 rounded-full hover:bg-white/5 transition">Studio</a>
+      <a href="#work"     class="px-3 py-1.5 rounded-full hover:bg-white/5 transition">Lavori</a>
+      <a href="#skills"   class="px-3 py-1.5 rounded-full hover:bg-white/5 transition">Competenze</a>
+      <a href="#contact"  class="px-3 py-1.5 rounded-full bg-ink-50 text-ink-950 font-semibold ml-1">Contatti</a>
+    </nav>
+  </header>
+
+  <!-- Side meta (lg only — non interferiscono col contenuto) -->
+  <aside class="hidden lg:flex fixed left-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-3 text-[10px] tracking-[0.28em] uppercase text-ink-500 vrl pointer-events-none">
+    <span>Catania · IT</span><span>·</span><span>MMXXVI</span>
+  </aside>
+  <aside class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-3 text-[10px] tracking-[0.28em] uppercase text-ink-500 items-end vrl pointer-events-none">
+    <span id="section-label">Apertura</span>
+  </aside>
+
+  <main class="relative z-10">
+
+    <!-- ——— HERO ——— -->
+    <section id="top" data-section="Apertura" class="relative min-h-[170svh]">
+      <div class="sticky top-0 h-[100svh] flex flex-col px-6 md:px-14 pt-28 pb-10">
+        <div class="max-w-[1320px] mx-auto w-full h-full flex flex-col">
+
+          <div class="flex items-center justify-between text-[11px] tracking-[0.28em] uppercase text-ink-300" data-reveal>
+            <div class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-ink-50/90"></span>
+              <span>Index — 01 / Apertura</span>
+            </div>
+            <div class="hidden md:block">Selected Work · 2020 — 2026</div>
+          </div>
+
+          <div class="flex-1 flex flex-col justify-center min-h-0">
+            <div class="text-[11px] tracking-[0.32em] uppercase text-ink-300 mb-6" data-reveal style="--d:120ms">
+              Sviluppatore &amp; Music Producer
+            </div>
+
+            <!-- HERO TITLE: letters are split + animated by JS -->
+            <h1 id="hero-title" class="hero-title text-[16vw] md:text-[11vw] lg:text-[168px]">
+              <span class="hero-line" data-word="Alessio"></span>
+              <span class="hero-line" data-word="Cavallaro" data-italic="true"></span>
+            </h1>
+
+            <div class="mt-12 md:mt-16 grid md:grid-cols-12 gap-8 items-end" data-reveal style="--d:520ms">
+              <div class="md:col-span-7">
+                <p class="text-[18px] md:text-[22px] leading-[1.4] text-ink-100 max-w-[640px] font-medium">
+                  Costruisco soluzioni web per problemi reali e progetto strumenti
+                  digitali per l'industria musicale.
+                  <span class="font-serif italic font-normal text-ink-300">Il codice è il mio strumento, il suono la mia tela.</span>
+                </p>
+              </div>
+              <div class="md:col-span-5 md:text-right">
+                <div class="grid grid-cols-3 gap-4 max-w-[420px] md:ml-auto">
+                  <div>
+                    <div class="text-[10px] tracking-[0.22em] uppercase text-ink-500 font-semibold">Studio</div>
+                    <div class="mt-1 text-[14px] text-ink-100 font-semibold">UniCT</div>
+                    <div class="text-[11px] text-ink-400">Ing. Informatica</div>
+                  </div>
+                  <div>
+                    <div class="text-[10px] tracking-[0.22em] uppercase text-ink-500 font-semibold">Base</div>
+                    <div class="mt-1 text-[14px] text-ink-100 font-semibold">Catania</div>
+                    <div class="text-[11px] text-ink-400">Sicilia, IT</div>
+                  </div>
+                  <div>
+                    <div class="text-[10px] tracking-[0.22em] uppercase text-ink-500 font-semibold">Stato</div>
+                    <div class="mt-1 text-[14px] text-ink-100 font-semibold">Aperto</div>
+                    <div class="text-[11px] text-ink-400">a commesse</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-end justify-between text-[11px] tracking-[0.28em] uppercase text-ink-400" data-reveal style="--d:760ms">
+            <div class="flex items-center gap-3"><span>Scorri</span><span class="block w-12 h-px bg-ink-300/40"></span></div>
+            <div class="hidden md:block editorial-num"><span id="scroll-pct">000</span>%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="relative py-10 border-y border-white/5 overflow-hidden">
+      <div class="marquee flex gap-12 text-[14px] uppercase tracking-[0.32em] text-ink-300 whitespace-nowrap font-semibold">
+        <span class="flex items-center gap-12">
+          <span>Sviluppo Web</span><span class="text-ink-600">◇</span>
+          <span class="font-serif italic font-normal normal-case text-ink-100 text-[18px]">Sound Design</span><span class="text-ink-600">◇</span>
+          <span>Ingegneria Informatica</span><span class="text-ink-600">◇</span>
+          <span class="font-serif italic font-normal normal-case text-ink-100 text-[18px]">Produzione Musicale</span><span class="text-ink-600">◇</span>
+          <span>Hardware Modding</span><span class="text-ink-600">◇</span>
+          <span class="font-serif italic font-normal normal-case text-ink-100 text-[18px]">MIDI &amp; Computer Vision</span><span class="text-ink-600">◇</span>
+        </span>
+        <span class="flex items-center gap-12" aria-hidden="true">
+          <span>Sviluppo Web</span><span class="text-ink-600">◇</span>
+          <span class="font-serif italic font-normal normal-case text-ink-100 text-[18px]">Sound Design</span><span class="text-ink-600">◇</span>
+          <span>Ingegneria Informatica</span><span class="text-ink-600">◇</span>
+          <span class="font-serif italic font-normal normal-case text-ink-100 text-[18px]">Produzione Musicale</span><span class="text-ink-600">◇</span>
+          <span>Hardware Modding</span><span class="text-ink-600">◇</span>
+          <span class="font-serif italic font-normal normal-case text-ink-100 text-[18px]">MIDI &amp; Computer Vision</span><span class="text-ink-600">◇</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section id="manifesto" data-section="Manifesto" class="relative" style="height: 220vh;">
+      <div class="sticky top-0 h-[100svh] flex items-center px-6 md:px-14 py-24">
+        <div class="max-w-[1320px] mx-auto w-full">
+          <div class="text-[11px] tracking-[0.28em] uppercase text-ink-400 mb-8 font-semibold">02 — Manifesto</div>
+          <div id="manifesto-text" class="text-[26px] sm:text-[30px] md:text-[38px] lg:text-[46px] leading-[1.22] tracking-[-0.025em] font-medium max-w-[1080px]">
+            Capire come funziona qualcosa dentro è la mia forma di rispetto verso quello che faccio. Smonto un circuito, una libreria, un compressore analogico, un'API. Li rimetto insieme meglio, o almeno con più lucidità. Codice e suono, per me, sono lo stesso gesto: dare forma a un'intenzione.
+          </div>
+          <div class="mt-10 flex items-center gap-3 text-[11px] tracking-[0.28em] uppercase text-ink-500 font-semibold">
+            <span class="w-6 h-px bg-ink-500"></span>
+            <span>Alessio Cavallaro · Statement</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDIO -->
+    <section id="about" data-section="Studio" class="relative">
+      <div class="px-6 md:px-14 pt-32 pb-12">
+        <div class="max-w-[1320px] mx-auto flex items-end justify-between" data-reveal>
+          <div>
+            <span class="text-[11px] tracking-[0.28em] uppercase text-ink-400 font-semibold">03 — Studio</span>
+            <h2 class="mt-5 text-[44px] md:text-[64px] leading-[1.02] tracking-[-0.035em] font-semibold max-w-[820px]">
+              Lo <span class="font-serif italic font-normal text-ink-200">studio</span> &amp; il metodo.
+            </h2>
+          </div>
+          <div class="hidden md:block text-[11px] tracking-[0.28em] uppercase text-ink-500 font-semibold">Indice — 03</div>
+        </div>
+      </div>
+
+      <div class="relative px-6 md:px-14 pb-32">
+        <div class="max-w-[1320px] mx-auto grid md:grid-cols-12 gap-10">
+          <div class="md:col-span-4">
+            <div class="sticky top-32 space-y-6">
+              <div class="aspect-[4/5] glass rounded-2xl overflow-hidden relative" data-reveal>
+                <div class="absolute inset-0 flex flex-col justify-between p-6">
+                  <div class="flex items-start justify-between text-[10px] tracking-[0.28em] uppercase text-ink-400 font-semibold">
+                    <span>Plate · AC / 01</span><span>MMXXVI</span>
+                  </div>
+                  <div class="font-serif italic text-[22vw] md:text-[180px] leading-[0.78] text-ink-50 -mb-6 -ml-2">A</div>
+                  <div class="flex items-end justify-between text-[10px] tracking-[0.28em] uppercase text-ink-400 font-semibold">
+                    <span>Catania</span><span class="editorial-num">37.5079° N</span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-[12px] text-ink-400 leading-[1.6] max-w-[280px]">
+                Lavoro come sviluppatore freelance e produco musica con la mia band. Disponibile per commesse e collaborazioni in entrambi i mondi.
+              </div>
+            </div>
+          </div>
+
+          <div class="md:col-span-7 md:col-start-6 space-y-14">
+            <div class="scrub-block">
+              <span class="text-[11px] tracking-[0.28em] uppercase text-ink-500 font-semibold">i.</span>
+              <p class="mt-3 text-[20px] md:text-[24px] leading-[1.5] font-medium">
+                Sono studente di <span class="text-ink-50 font-semibold">Ingegneria Informatica all'Università di Catania</span>. Quello che so fare davvero, però, l'ho imparato costruendo: un approccio da autodidatta, fatto di tentativi e iterazione lucida.
+              </p>
+            </div>
+            <div class="scrub-block">
+              <span class="text-[11px] tracking-[0.28em] uppercase text-ink-500 font-semibold">ii.</span>
+              <p class="mt-3 text-[20px] md:text-[24px] leading-[1.5] font-medium">
+                Da una parte progetto soluzioni web — front-end, back-end, gestionali, automazioni — pensate per <span class="text-ink-50 font-semibold">risolvere problemi reali</span>. Dall'altra produco musica, suono più strumenti e studio l'hardware audio dal suo lato circuitale.
+              </p>
+            </div>
+            <div class="scrub-block">
+              <span class="text-[11px] tracking-[0.28em] uppercase text-ink-500 font-semibold">iii.</span>
+              <p class="mt-3 text-[20px] md:text-[24px] leading-[1.5] font-medium">
+                Il filo conduttore è uno solo: <span class="font-serif italic font-normal text-ink-50">capire come funzionano le cose dentro</span>. Un'API, un compressore, una catena di segnale, un'interfaccia. Tutto è un sistema che si può smontare, capire e rimettere insieme meglio.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden" data-reveal>
+              <div class="bg-ink-950 p-6">
+                <div class="text-[10px] tracking-[0.28em] uppercase text-ink-500 font-semibold">Università</div>
+                <div class="mt-3 text-[15px] text-ink-50 font-semibold">UniCT</div>
+                <div class="text-[12px] text-ink-400 mt-1">Ingegneria Informatica · in corso</div>
+              </div>
+              <div class="bg-ink-950 p-6">
+                <div class="text-[10px] tracking-[0.28em] uppercase text-ink-500 font-semibold">Metodo</div>
+                <div class="mt-3 text-[15px] text-ink-50 font-serif italic font-normal">Learning by doing</div>
+                <div class="text-[12px] text-ink-400 mt-1">Autodidatta dal 2020</div>
+              </div>
+              <div class="bg-ink-950 p-6">
+                <div class="text-[10px] tracking-[0.28em] uppercase text-ink-500 font-semibold">Doppio binario</div>
+                <div class="mt-3 text-[15px] text-ink-50 font-semibold">Codice &amp; Suono</div>
+                <div class="text-[12px] text-ink-400 mt-1">Una stessa disciplina</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK — horizontal scroll su desktop, stack su mobile -->
+    <section id="work-section" data-section="Lavori" class="relative" style="height: 600vh;">
+      <div id="work-rail-wrap" class="sticky top-0 h-[100svh] overflow-hidden">
+
+        <!-- header overlay (md+) -->
+        <div class="hidden md:block absolute top-0 left-0 right-0 z-20 px-6 md:px-14 pt-28 pb-4 pointer-events-none">
+          <div class="max-w-[1320px] mx-auto flex items-end justify-between">
+            <div>
+              <span class="text-[11px] tracking-[0.28em] uppercase text-ink-400 font-semibold">04 — Lavori selezionati</span>
+              <h2 class="mt-3 text-[40px] lg:text-[52px] leading-[1] tracking-[-0.035em] font-semibold">
+                Cinque progetti, <span class="font-serif italic font-normal text-ink-200">due discipline</span>.
+              </h2>
+            </div>
+            <div class="flex items-center gap-4 text-[11px] tracking-[0.28em] uppercase text-ink-400 font-semibold">
+              <span class="editorial-num"><span id="work-current">01</span> / 05</span>
+              <div class="w-40 h-px bg-white/10 relative">
+                <div id="work-progress" class="absolute top-0 left-0 h-px bg-ink-50" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- mobile header -->
+        <div class="md:hidden px-6 pt-24 pb-2">
+          <div class="text-[11px] tracking-[0.28em] uppercase text-ink-400 font-semibold">04 — Lavori selezionati</div>
+          <h2 class="mt-3 text-[34px] leading-[1] tracking-[-0.03em] font-semibold">
+            Cinque progetti, <span class="font-serif italic font-normal text-ink-200">due discipline</span>.
+          </h2>
+        </div>
+
+        <!-- rail -->
+        <div id="h-rail" class="h-rail absolute top-0 left-0 h-full flex items-center will-change-transform">
+
+          <!-- 01 — MIDI Hand -->
+          <article class="work-panel w-screen h-screen flex items-center justify-center px-6 md:px-14 shrink-0 pt-28 md:pt-36">
+            <div class="max-w-[1320px] w-full grid md:grid-cols-12 gap-10 items-center">
+              <div class="md:col-span-7 panel-visual">
+                <div class="glass rounded-[28px] aspect-[4/3] relative overflow-hidden">
+                  <svg viewBox="0 0 600 450" class="absolute inset-0 w-full h-full">
+                    <g stroke="rgba(245,243,239,.06)">
+                      <line x1="0" y1="112" x2="600" y2="112"/><line x1="0" y1="225" x2="600" y2="225"/>
+                      <line x1="0" y1="337" x2="600" y2="337"/><line x1="150" y1="0" x2="150" y2="450"/>
+                      <line x1="300" y1="0" x2="300" y2="450"/><line x1="450" y1="0" x2="450" y2="450"/>
+                    </g>
+                    <g stroke="rgba(245,243,239,.85)" stroke-width="1.6" fill="none" stroke-linecap="round">
+                      <path d="M210 320 L260 230 L300 200 L360 215 L410 260 L420 330 L380 360 L240 360 Z"/>
+                      <path d="M260 230 L240 140"/><path d="M300 200 L295 110"/>
+                      <path d="M340 205 L350 105"/><path d="M380 220 L405 130"/><path d="M210 320 L160 280"/>
+                    </g>
+                    <g fill="#f5f3ef">
+                      <circle cx="240" cy="140" r="3.5"/><circle cx="295" cy="110" r="3.5"/>
+                      <circle cx="350" cy="105" r="3.5"/><circle cx="405" cy="130" r="3.5"/>
+                      <circle cx="160" cy="280" r="3.5"/>
+                    </g>
+                    <g>
+                      <rect x="480" y="80"  width="60" height="12" fill="rgba(245,243,239,.85)"/>
+                      <rect x="480" y="118" width="40" height="12" fill="rgba(245,243,239,.45)"/>
+                      <rect x="480" y="156" width="78" height="12" fill="rgba(245,243,239,.7)"/>
+                      <rect x="480" y="194" width="22" height="12" fill="rgba(245,243,239,.35)"/>
+                      <rect x="480" y="232" width="64" height="12" fill="rgba(245,243,239,.55)"/>
+                      <rect x="480" y="270" width="50" height="12" fill="rgba(245,243,239,.4)"/>
+                      <text x="480" y="70" fill="rgba(245,243,239,.5)" font-size="10" letter-spacing="2">CC #74</text>
+                    </g>
+                    <text x="40" y="50" fill="rgba(245,243,239,.55)" font-size="11" letter-spacing="2.4">MEDIAPIPE · PYTHON · MIDI OUT</text>
+                  </svg>
+                </div>
+              </div>
+              <div class="md:col-span-5 panel-copy">
+                <div class="text-[11px] tracking-[0.28em] uppercase text-ink-400 mb-3 editorial-num font-semibold">01 / Il Ponte</div>
+                <h3 class="text-[32px] md:text-[40px] leading-[1.05] tracking-[-0.025em] font-semibold mb-4">
+                  Controller MIDI <span class="font-serif italic font-normal">gestuale</span>.
+                </h3>
+                <p class="text-ink-300 text-[16px] leading-[1.6] mb-6 max-w-[480px]">
+                  Una webcam, un modello di hand-tracking, e un ponte virtuale verso la DAW.
+                  Sviluppato in <strong class="text-ink-100 font-semibold">Python con MediaPipe</strong>: traduce
+                  in tempo reale i movimenti delle dita in segnali MIDI assegnabili a qualsiasi parametro.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">Python</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">MediaPipe</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">rtmidi</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">Computer Vision</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 — New Garden / CAI -->
+          <article class="work-panel w-screen h-screen flex items-center justify-center px-6 md:px-14 shrink-0 pt-28 md:pt-36">
+            <div class="max-w-[1320px] w-full grid md:grid-cols-12 gap-10 items-center">
+              <div class="md:col-span-5 panel-copy md:order-1">
+                <div class="text-[11px] tracking-[0.28em] uppercase text-ink-400 mb-3 editorial-num font-semibold">02 / Sviluppo complesso</div>
+                <h3 class="text-[32px] md:text-[40px] leading-[1.05] tracking-[-0.025em] font-semibold mb-4">
+                  New Garden &amp; <span class="font-serif italic font-normal">CAI</span>.
+                </h3>
+                <p class="text-ink-300 text-[16px] leading-[1.6] mb-6 max-w-[480px]">
+                  Due commesse reali. Una piattaforma e-commerce B2B/B2C con gestione catalogo lato cliente,
+                  e un sito istituzionale focalizzato su accessibilità, contenuti editoriali e performance.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">Front-end</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">Back-end</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">PHP · SQL</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">LocalWP</span>
+                </div>
+              </div>
+              <div class="md:col-span-7 panel-visual md:order-2">
+                <div class="glass rounded-[28px] aspect-[4/3] relative overflow-hidden p-6 flex flex-col gap-3">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-white/12"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-white/12"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-white/12"></span>
+                    <div class="flex-1 ml-2 h-5 rounded-md glass-soft text-[10px] text-ink-500 flex items-center px-2 truncate">newgarden.it / b2b</div>
+                  </div>
+                  <div class="flex-1 grid grid-cols-3 gap-2.5">
+                    <div class="col-span-2 rounded-xl glass-soft p-3">
+                      <div class="h-2 w-16 bg-white/15 rounded-full"></div>
+                      <div class="mt-3 h-24 rounded-lg bg-gradient-to-br from-white/10 to-white/5"></div>
+                      <div class="mt-3 grid grid-cols-3 gap-2">
+                        <div class="h-14 rounded-md bg-white/5"></div>
+                        <div class="h-14 rounded-md bg-white/5"></div>
+                        <div class="h-14 rounded-md bg-white/10"></div>
+                      </div>
+                    </div>
+                    <div class="rounded-xl glass-soft p-3 flex flex-col gap-2">
+                      <div class="h-2 w-10 bg-white/15 rounded-full"></div>
+                      <div class="h-10 rounded-md bg-white/5"></div>
+                      <div class="h-10 rounded-md bg-white/10"></div>
+                      <div class="h-10 rounded-md bg-white/5"></div>
+                      <div class="mt-auto h-7 rounded-full bg-ink-50 text-ink-950 flex items-center justify-center text-[9px] font-semibold">Ordina</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 — Producer Tools -->
+          <article class="work-panel w-screen h-screen flex items-center justify-center px-6 md:px-14 shrink-0 pt-28 md:pt-36">
+            <div class="max-w-[1320px] w-full grid md:grid-cols-12 gap-10 items-center">
+              <div class="md:col-span-7 panel-visual">
+                <div class="glass rounded-[28px] aspect-[4/3] relative overflow-hidden p-6 grid grid-cols-12 grid-rows-6 gap-3">
+                  <div class="col-span-5 row-span-3 rounded-2xl glass-soft p-4 flex flex-col justify-between">
+                    <span class="text-[10px] tracking-[0.2em] uppercase text-ink-500 font-semibold">BPM · Tap</span>
+                    <div class="text-[44px] font-semibold leading-none text-ink-50 editorial-num">128<span class="text-[18px] text-ink-500">.0</span></div>
+                    <div class="text-[10px] text-ink-500">tap → 4 hits</div>
+                  </div>
+                  <div class="col-span-4 row-span-3 rounded-2xl glass-soft p-4">
+                    <span class="text-[10px] tracking-[0.2em] uppercase text-ink-500 font-semibold">Key</span>
+                    <div class="mt-3 text-[28px] font-serif italic text-ink-100">F♯ minor</div>
+                    <div class="mt-2 flex gap-1">
+                      <span class="h-1.5 w-6 rounded-full bg-ink-50"></span>
+                      <span class="h-1.5 w-6 rounded-full bg-white/15"></span>
+                      <span class="h-1.5 w-6 rounded-full bg-white/15"></span>
+                    </div>
+                  </div>
+                  <div class="col-span-3 row-span-6 rounded-2xl glass-soft p-4 flex flex-col items-center justify-center">
+                    <svg viewBox="0 0 120 120" class="w-full max-w-[120px]">
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(245,243,239,.1)"/>
+                      <circle cx="60" cy="60" r="34" fill="none" stroke="rgba(245,243,239,.08)"/>
+                      <g fill="rgba(245,243,239,.85)">
+                        <circle cx="60" cy="10" r="3.5"/><circle cx="103" cy="42" r="3.5"/>
+                        <circle cx="86" cy="100" r="3.5"/><circle cx="34" cy="100" r="3.5"/>
+                        <circle cx="17" cy="42" r="3.5"/>
+                      </g>
+                      <path d="M60 10 L86 100 L17 42 L103 42 L34 100 Z" fill="none" stroke="rgba(245,243,239,.6)" stroke-width="1.2"/>
+                    </svg>
+                    <div class="text-[10px] tracking-[0.2em] uppercase text-ink-500 mt-2 font-semibold">Chord wheel</div>
+                  </div>
+                  <div class="col-span-5 row-span-3 rounded-2xl glass-soft p-4">
+                    <span class="text-[10px] tracking-[0.2em] uppercase text-ink-500 font-semibold">Sample · Pitch</span>
+                    <div class="mt-3 flex items-end gap-1 h-12">
+                      <span class="w-1.5 bg-white/30" style="height:14px"></span>
+                      <span class="w-1.5 bg-white/40" style="height:28px"></span>
+                      <span class="w-1.5 bg-ink-50" style="height:40px"></span>
+                      <span class="w-1.5 bg-white/40" style="height:24px"></span>
+                      <span class="w-1.5 bg-ink-50" style="height:44px"></span>
+                      <span class="w-1.5 bg-white/30" style="height:18px"></span>
+                      <span class="w-1.5 bg-white/50" style="height:36px"></span>
+                      <span class="w-1.5 bg-white/30" style="height:22px"></span>
+                      <span class="w-1.5 bg-white/40" style="height:34px"></span>
+                      <span class="w-1.5 bg-ink-50" style="height:48px"></span>
+                    </div>
+                    <div class="text-[10px] text-ink-500 mt-2 editorial-num">−6.2 dB · 44.1kHz</div>
+                  </div>
+                  <div class="col-span-4 row-span-3 rounded-2xl glass-soft p-4 flex flex-col justify-between">
+                    <span class="text-[10px] tracking-[0.2em] uppercase text-ink-500 font-semibold">Tools</span>
+                    <div class="grid grid-cols-2 gap-1.5">
+                      <span class="text-[10px] px-2 py-1 rounded-md bg-white/5 text-ink-200 font-semibold">Tuner</span>
+                      <span class="text-[10px] px-2 py-1 rounded-md bg-white/5 text-ink-200 font-semibold">LUFS</span>
+                      <span class="text-[10px] px-2 py-1 rounded-md bg-white/5 text-ink-200 font-semibold">Spectrum</span>
+                      <span class="text-[10px] px-2 py-1 rounded-md bg-white/10 text-ink-50 font-semibold">+ altro</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="md:col-span-5 panel-copy">
+                <div class="text-[11px] tracking-[0.28em] uppercase text-ink-400 mb-3 editorial-num font-semibold">03 / Audio &amp; Code</div>
+                <h3 class="text-[32px] md:text-[40px] leading-[1.05] tracking-[-0.025em] font-semibold mb-4">
+                  Producer <span class="font-serif italic font-normal">Tools</span>.
+                </h3>
+                <p class="text-ink-300 text-[16px] leading-[1.6] mb-6 max-w-[480px]">
+                  Una suite web di utility per chi produce: BPM tap, key finder, chord wheel,
+                  calcolo dei tempi di delay, conversioni di sample rate. Nata da un'esigenza personale.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">Web Audio API</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">Front-end</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">DSP</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 — Gestionale band -->
+          <article class="work-panel w-screen h-screen flex items-center justify-center px-6 md:px-14 shrink-0 pt-28 md:pt-36">
+            <div class="max-w-[1320px] w-full grid md:grid-cols-12 gap-10 items-center">
+              <div class="md:col-span-5 panel-copy md:order-1">
+                <div class="text-[11px] tracking-[0.28em] uppercase text-ink-400 mb-3 editorial-num font-semibold">04 / Gestionale</div>
+                <h3 class="text-[32px] md:text-[40px] leading-[1.05] tracking-[-0.025em] font-semibold mb-4">
+                  Centro di controllo per <span class="font-serif italic font-normal">la band</span>.
+                </h3>
+                <p class="text-ink-300 text-[16px] leading-[1.6] mb-6 max-w-[480px]">
+                  Gestionale costruito per l'organizzazione logistica della band: calendario date,
+                  contatti locali, scaletta dinamica, cachet, spese condivise. Un posto solo, accessibile da tutti.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">Full-stack</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">SQL</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">Auth multi-utente</span>
+                </div>
+              </div>
+              <div class="md:col-span-7 panel-visual md:order-2">
+                <div class="glass rounded-[28px] aspect-[4/3] relative overflow-hidden p-6 flex flex-col">
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="text-[11px] tracking-[0.2em] uppercase text-ink-400 font-semibold">Tour · Estate '25</span>
+                    <span class="text-[11px] text-ink-500 font-semibold">8 date</span>
+                  </div>
+                  <ul class="space-y-2.5 text-[12px]">
+                    <li class="flex items-center justify-between glass-soft rounded-xl px-3 py-2.5"><span class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-ink-50"></span><span class="font-medium">12.07 · Catania</span></span><span class="text-ink-500">Confermato</span></li>
+                    <li class="flex items-center justify-between glass-soft rounded-xl px-3 py-2.5"><span class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-ink-50"></span><span class="font-medium">19.07 · Siracusa</span></span><span class="text-ink-500">Confermato</span></li>
+                    <li class="flex items-center justify-between glass-soft rounded-xl px-3 py-2.5"><span class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-ink-300"></span><span class="font-medium">02.08 · Palermo</span></span><span class="text-ink-500">In trattativa</span></li>
+                    <li class="flex items-center justify-between glass-soft rounded-xl px-3 py-2.5"><span class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-white/30"></span><span class="font-medium">17.08 · Modica</span></span><span class="text-ink-500">Opzione</span></li>
+                  </ul>
+                  <div class="mt-4 pt-4 border-t border-white/5 flex justify-between text-[11px]">
+                    <span class="text-ink-500">Cachet medio</span><span class="text-ink-200 editorial-num font-semibold">€ 850 · +12%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 05 — Arrustuta -->
+          <article class="work-panel w-screen h-screen flex items-center justify-center px-6 md:px-14 shrink-0 pt-28 md:pt-36">
+            <div class="max-w-[1320px] w-full grid md:grid-cols-12 gap-10 items-center">
+              <div class="md:col-span-7 panel-visual">
+                <div class="glass rounded-[28px] aspect-[4/3] relative overflow-hidden p-6 flex flex-col gap-3">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="text-[11px] tracking-[0.2em] uppercase text-ink-400 font-semibold">Arrustuta · Sabato sera</div>
+                      <div class="text-[14px] text-ink-100 mt-1 font-medium">14 partecipanti · spesa condivisa</div>
+                    </div>
+                    <div class="text-right">
+                      <div class="text-[28px] font-semibold leading-none text-ink-50 editorial-num">€ 187,40</div>
+                      <div class="text-[11px] text-ink-200 mt-1 editorial-num">€ 13,38 a testa</div>
+                    </div>
+                  </div>
+                  <div class="hairline my-1"></div>
+                  <div class="flex-1 grid grid-cols-2 gap-2.5">
+                    <div class="glass-soft rounded-xl p-3 flex items-center justify-between"><span class="text-[12px] text-ink-300">Carne · Marco</span><span class="text-[12px] text-ink-100 editorial-num font-semibold">€ 64,00</span></div>
+                    <div class="glass-soft rounded-xl p-3 flex items-center justify-between"><span class="text-[12px] text-ink-300">Vino · Giulia</span><span class="text-[12px] text-ink-100 editorial-num font-semibold">€ 32,50</span></div>
+                    <div class="glass-soft rounded-xl p-3 flex items-center justify-between"><span class="text-[12px] text-ink-300">Pane · Tommy</span><span class="text-[12px] text-ink-100 editorial-num font-semibold">€ 14,90</span></div>
+                    <div class="glass-soft rounded-xl p-3 flex items-center justify-between"><span class="text-[12px] text-ink-300">Carbone · Alessio</span><span class="text-[12px] text-ink-100 editorial-num font-semibold">€ 22,00</span></div>
+                    <div class="glass-soft rounded-xl p-3 flex items-center justify-between col-span-2"><span class="text-[12px] text-ink-300">Misto formaggi · Sara</span><span class="text-[12px] text-ink-100 editorial-num font-semibold">€ 54,00</span></div>
+                  </div>
+                  <div class="hairline my-1"></div>
+                  <div class="flex items-center justify-between text-[11px] text-ink-500"><span>Live · aggiornato 2s fa</span><span class="font-semibold">PHP + SQL</span></div>
+                </div>
+              </div>
+              <div class="md:col-span-5 panel-copy">
+                <div class="text-[11px] tracking-[0.28em] uppercase text-ink-400 mb-3 editorial-num font-semibold">05 / Problem solving</div>
+                <h3 class="text-[32px] md:text-[40px] leading-[1.05] tracking-[-0.025em] font-semibold mb-4">
+                  Arrustuta.
+                </h3>
+                <p class="text-ink-300 text-[16px] leading-[1.6] mb-6 max-w-[480px]">
+                  Una web app nata per un problema concretissimo: gestire in tempo reale spese e logistica delle
+                  grigliate di gruppo. <em class="font-serif font-normal text-ink-100">PHP, SQL, zero fronzoli.</em>
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">PHP</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">SQL</span>
+                  <span class="px-3 py-1 rounded-full text-[11px] text-ink-200 glass-soft font-semibold">Realtime</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" data-section="Competenze" class="px-6 md:px-14 py-32 md:py-48">
+      <div class="max-w-[1320px] mx-auto">
+        <div class="mb-16" data-reveal>
+          <span class="text-[11px] tracking-[0.28em] uppercase text-ink-400 font-semibold">05 — Competenze</span>
+          <h2 class="mt-5 text-[44px] md:text-[64px] leading-[1.02] tracking-[-0.035em] font-semibold max-w-[820px]">
+            Strumenti che uso <span class="font-serif italic font-normal text-ink-200">tutti i giorni</span>.
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass rounded-3xl p-8 md:p-10" data-reveal>
+            <div class="flex items-center justify-between mb-8">
+              <span class="text-[11px] tracking-[0.28em] uppercase text-ink-400 font-semibold">Web &amp; Software</span>
+              <span class="text-[11px] text-ink-500 editorial-num font-semibold">A — 06</span>
+            </div>
+            <ul class="text-[18px] font-medium text-ink-100">
+              <li class="flex items-baseline justify-between border-b border-white/5 py-4"><span>Front-end</span><span class="text-[12px] text-ink-500">React · Next · Tailwind</span></li>
+              <li class="flex items-baseline justify-between border-b border-white/5 py-4"><span>Back-end</span><span class="text-[12px] text-ink-500">Node · API REST</span></li>
+              <li class="flex items-baseline justify-between border-b border-white/5 py-4"><span>PHP</span><span class="text-[12px] text-ink-500">WordPress · custom</span></li>
+              <li class="flex items-baseline justify-between border-b border-white/5 py-4"><span>SQL</span><span class="text-[12px] text-ink-500">MySQL · MariaDB</span></li>
+              <li class="flex items-baseline justify-between border-b border-white/5 py-4"><span>Python</span><span class="text-[12px] text-ink-500">Automazioni · CV</span></li>
+              <li class="flex items-baseline justify-between pt-4"><span>LocalWP</span><span class="text-[12px] text-ink-500">Dev environment</span></li>
+            </ul>
+          </div>
+
+          <div class="glass rounded-3xl p-8 md:p-10" data-reveal style="--d:120ms">
+            <div class="flex items-center justify-between mb-8">
+              <span class="text-[11px] tracking-[0.28em] uppercase text-ink-400 font-semibold">Audio &amp; Hardware</span>
+              <span class="text-[11px] text-ink-500 editorial-num font-semibold">B — 05</span>
+            </div>
+            <ul class="text-[18px] font-medium text-ink-100">
+              <li class="flex items-baseline justify-between border-b border-white/5 py-4"><span>Polistrumentista</span><span class="text-[12px] text-ink-500">Chitarra · basso · synth</span></li>
+              <li class="flex items-baseline justify-between border-b border-white/5 py-4"><span>FL Studio</span><span class="text-[12px] text-ink-500">Produzione · mixing</span></li>
+              <li class="flex items-baseline justify-between border-b border-white/5 py-4"><span>Ableton</span><span class="text-[12px] text-ink-500">Live · session view</span></li>
+              <li class="flex items-baseline justify-between border-b border-white/5 py-4"><span>Sound Design</span><span class="text-[12px] text-ink-500">Synth · sampling · foley</span></li>
+              <li class="flex items-baseline justify-between pt-4"><span>Modding hardware</span><span class="text-[12px] text-ink-500">Circuiti · saldatura</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" data-section="Contatti" class="relative" style="height: 180vh;">
+      <div class="sticky top-0 h-[100svh] flex items-end overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <span id="contact-mark" class="font-serif italic text-ink-50/[0.04] leading-[0.8] tracking-[-0.05em] origin-center text-[40vw] select-none">AC</span>
+        </div>
+
+        <div class="relative z-10 w-full px-6 md:px-14 pb-16 md:pb-24 pt-24">
+          <div class="max-w-[1320px] mx-auto">
+
+            <div class="flex items-end justify-between mb-10" data-reveal>
+              <div>
+                <span class="text-[11px] tracking-[0.28em] uppercase text-ink-400 font-semibold">06 — Contatti</span>
+                <h2 class="mt-5 text-[44px] md:text-[80px] leading-[0.98] tracking-[-0.035em] font-semibold max-w-[1000px]">
+                  Hai un'idea che <span class="font-serif italic font-normal text-ink-200">vuole prendere forma?</span>
+                </h2>
+              </div>
+              <div class="hidden md:block text-[11px] tracking-[0.28em] uppercase text-ink-500 font-semibold">Indice — 06</div>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-10 items-end" data-reveal style="--d:160ms">
+              <div class="md:col-span-7">
+                <p class="text-ink-300 text-[18px] max-w-[560px] leading-[1.6] font-medium">
+                  Codice, suono, hardware — o tutto insieme. Scrivimi due righe,
+                  troviamo il modo migliore di partire.
+                </p>
+
+                <div class="mt-10 flex flex-col sm:flex-row gap-3">
+                  <a href="/cdn-cgi/l/email-protection#0869646d7b7b6167266b697e696464697a67486d65696164266b6765" class="btn-light rounded-full px-7 py-4 text-[15px] inline-flex items-center gap-3">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+                    <span class="__cf_email__" data-cfemail="6809040d1b1b0107460b091e090404091a07280d05090104460b0705">[email&#160;protected]</span>
+                  </a>
+                  <a href="#" class="btn-ghost rounded-full px-7 py-4 text-[15px] inline-flex items-center gap-3">LinkedIn</a>
+                </div>
+              </div>
+
+              <div class="md:col-span-5">
+                <div class="grid grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+                  <div class="bg-ink-950 p-5">
+                    <div class="text-[10px] tracking-[0.28em] uppercase text-ink-500 font-semibold">Telefono</div>
+                    <div class="mt-2 text-[14px] text-ink-100 editorial-num font-semibold">+39 — su richiesta</div>
+                  </div>
+                  <div class="bg-ink-950 p-5">
+                    <div class="text-[10px] tracking-[0.28em] uppercase text-ink-500 font-semibold">Risposta</div>
+                    <div class="mt-2 text-[14px] text-ink-100 font-semibold">entro 24h</div>
+                  </div>
+                  <div class="bg-ink-950 p-5">
+                    <div class="text-[10px] tracking-[0.28em] uppercase text-ink-500 font-semibold">Disponibile</div>
+                    <div class="mt-2 text-[14px] text-ink-100 font-semibold">Q3 — Q4 / 2026</div>
+                  </div>
+                  <div class="bg-ink-950 p-5">
+                    <div class="text-[10px] tracking-[0.28em] uppercase text-ink-500 font-semibold">Fuso</div>
+                    <div class="mt-2 text-[14px] text-ink-100 editorial-num font-semibold">CET / UTC+1</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hairline my-14"></div>
+
+            <div class="flex flex-col md:flex-row justify-between gap-6 text-[12px] text-ink-500">
+              <div class="flex items-center gap-3">
+                <span class="font-serif italic text-[18px] text-ink-200">Alessio Cavallaro</span>
+                <span class="hidden md:inline">·</span>
+                <span class="font-semibold">Catania, IT · MMXXVI</span>
+              </div>
+              <div class="flex gap-6 font-semibold">
+                <a href="#top"     class="link hover:text-ink-100 transition">Torna su</a>
+                <a href="#work"    class="link hover:text-ink-100 transition">Lavori</a>
+                <a href="#contact" class="link hover:text-ink-100 transition">Contatti</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(() => {
+  const EASE  = (t) => 1 - Math.pow(1 - t, 3);
+  const clamp = (n, a=0, b=1) => Math.min(b, Math.max(a, n));
+  const lerp  = (a, b, t) => a + (b - a) * t;
+  const mqDesktop = window.matchMedia('(min-width: 768px)');
+
+  /* ——— Reveal entries ——— */
+  const ioReveal = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ioReveal.unobserve(e.target); } });
+  }, { threshold: .15, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => ioReveal.observe(el));
+
+  /* ——— HERO: split letters into spans ——— */
+  const heroTitle = document.getElementById('hero-title');
+  const allLetters = [];
+  if (heroTitle) {
+    let globalIdx = 0;
+    heroTitle.querySelectorAll('[data-word]').forEach(line => {
+      const word = line.dataset.word;
+      const italic = line.dataset.italic === 'true';
+      if (italic) {
+        line.classList.add('font-serif','italic');
+        line.style.fontWeight = '400';
+        line.style.color = 'var(--ink-100)';
+      }
+      const frag = document.createDocumentFragment();
+      [...word].forEach(ch => {
+        if (ch === ' ') {
+          const sp = document.createElement('span');
+          sp.className = 'h-space';
+          frag.appendChild(sp);
+        } else {
+          const s = document.createElement('span');
+          s.className = 'h-letter';
+          s.style.setProperty('--i', String(globalIdx));
+          s.textContent = ch;
+          frag.appendChild(s);
+          allLetters.push(s);
+          globalIdx++;
+        }
+      });
+      line.appendChild(frag);
+    });
+    // trigger entry mask-reveal
+    requestAnimationFrame(() => {
+      allLetters.forEach(l => l.classList.add('lit'));
+    });
+  }
+
+  /* ——— Wrap manifesto into words (scrub) ——— */
+  const manifesto = document.getElementById('manifesto-text');
+  if (manifesto) {
+    const text = manifesto.textContent.trim();
+    manifesto.innerHTML = text.split(/(\s+)/).map(tok => {
+      if (/^\s+$/.test(tok)) return tok;
+      return `<span class="scrub-word">${tok}</span>`;
+    }).join('');
+  }
+  const manifestoWords = manifesto ? manifesto.querySelectorAll('.scrub-word') : [];
+
+  /* ——— Wrap each studio scrub-block paragraph words ——— */
+  document.querySelectorAll('.scrub-block p').forEach(p => {
+    const walk = (node) => {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        node.nodeValue.split(/(\s+)/).forEach(tok => {
+          if (/^\s+$/.test(tok)) frag.appendChild(document.createTextNode(tok));
+          else if (tok.length) {
+            const s = document.createElement('span');
+            s.className = 'scrub-word'; s.textContent = tok;
+            frag.appendChild(s);
+          }
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else {
+        [...node.childNodes].forEach(walk);
+      }
+    };
+    walk(p);
+  });
+
+  /* ——— Section label tracker ——— */
+  const labelEl = document.getElementById('section-label');
+  if (labelEl) {
+    const sections = document.querySelectorAll('[data-section]');
+    const obsSection = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) labelEl.textContent = e.target.dataset.section; });
+    }, { threshold: .35 });
+    sections.forEach(s => obsSection.observe(s));
+  }
+
+  /* ——— Scroll loop ——— */
+  const heroSection = document.querySelector('#top');
+  const manifestoSec = document.querySelector('#manifesto');
+  const workSec = document.querySelector('#work-section');
+  const rail = document.getElementById('h-rail');
+  const workProgress = document.getElementById('work-progress');
+  const workCurrent = document.getElementById('work-current');
+  const contactSec = document.querySelector('#contact');
+  const contactMark = document.getElementById('contact-mark');
+  const progressBar = document.getElementById('progress');
+  const scrollPct = document.getElementById('scroll-pct');
+
+  function sectionProgress(el) {
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const total = r.height + vh;
+    const passed = vh - r.top;
+    return clamp(passed / total, 0, 1);
+  }
+  function pinProgress(el) {
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const pinnable = r.height - vh;
+    if (pinnable <= 0) return clamp(-r.top / Math.max(1, r.height), 0, 1);
+    return clamp(-r.top / pinnable, 0, 1);
+  }
+
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const desktop = mqDesktop.matches;
+
+    // Global scroll progress
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const gp = clamp(window.scrollY / Math.max(1, docH), 0, 1);
+    progressBar.style.width = (gp * 100).toFixed(2) + '%';
+    if (scrollPct) scrollPct.textContent = String(Math.round(gp * 100)).padStart(3, '0');
+
+    // ——— HERO: per-letter scatter on scroll
+    if (heroSection && allLetters.length) {
+      const p = pinProgress(heroSection);
+      const total = allLetters.length;
+      const stagger = 0.35; // window per letter / spread
+      allLetters.forEach((el, i) => {
+        // local progress: each letter exits a bit later than the previous
+        const start = (i / total) * stagger;
+        const local = clamp((p - start) / (1 - stagger), 0, 1);
+        const eased = EASE(local);
+        const ty = -eased * (60 + (i % 5) * 18);
+        const rot = (i % 2 === 0 ? -1 : 1) * eased * 6;
+        const blur = eased * 12;
+        const op = 1 - eased;
+        el.style.transform = `translate3d(0, ${ty.toFixed(1)}px, 0) rotate(${rot.toFixed(2)}deg)`;
+        el.style.filter = `blur(${blur.toFixed(2)}px)`;
+        el.style.opacity = op.toFixed(3);
+      });
+    }
+
+    // ——— MANIFESTO scrub
+    if (manifestoSec && manifestoWords.length) {
+      const p = pinProgress(manifestoSec);
+      const t = clamp((p - 0.05) / 0.85, 0, 1);
+      const litCount = Math.round(t * manifestoWords.length);
+      manifestoWords.forEach((w, i) => {
+        if (i < litCount) w.classList.add('lit'); else w.classList.remove('lit');
+      });
+    }
+
+    // ——— STUDIO paragraph scrubs
+    document.querySelectorAll('.scrub-block').forEach(block => {
+      const r = block.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const p = clamp((vh * 0.8 - r.top) / (vh * 0.6), 0, 1);
+      const words = block.querySelectorAll('.scrub-word');
+      const litCount = Math.round(p * words.length);
+      words.forEach((w, i) => {
+        if (i < litCount) w.classList.add('lit'); else w.classList.remove('lit');
+      });
+    });
+
+    // ——— WORK horizontal scroll (desktop only)
+    if (desktop && workSec && rail) {
+      const p = pinProgress(workSec);
+      const panels = rail.children.length;
+      const maxShift = (panels - 1) * window.innerWidth;
+      const tx = -p * maxShift;
+      rail.style.transform = `translate3d(${tx.toFixed(2)}px, 0, 0)`;
+
+      if (workProgress) workProgress.style.width = (p * 100).toFixed(2) + '%';
+      const current = Math.min(panels, Math.floor(p * panels) + 1);
+      if (workCurrent) workCurrent.textContent = String(current).padStart(2, '0');
+
+      const panelW = window.innerWidth;
+      [...rail.children].forEach((panel, idx) => {
+        const center = idx * panelW;
+        const railX = p * maxShift;
+        const dist = railX - center;
+        const norm = clamp(dist / panelW, -1, 1);
+        const visual = panel.querySelector('.panel-visual');
+        const copy   = panel.querySelector('.panel-copy');
+        if (visual) visual.style.transform = `translate3d(${(-norm * 50).toFixed(2)}px, 0, 0) scale(${(1 - Math.abs(norm) * 0.05).toFixed(3)})`;
+        if (copy)   copy.style.transform   = `translate3d(${(-norm * 90).toFixed(2)}px, 0, 0)`;
+        const op = 1 - Math.min(1, Math.abs(norm) * 1.3);
+        if (visual) visual.style.opacity = op.toFixed(3);
+        if (copy)   copy.style.opacity   = op.toFixed(3);
+      });
+    } else if (rail) {
+      rail.style.transform = '';
+    }
+
+    // ——— CONTACT mark
+    if (contactSec && contactMark) {
+      const p = sectionProgress(contactSec);
+      const eased = EASE(clamp(p * 1.2, 0, 1));
+      const scale = lerp(0.6, 1.1, eased);
+      contactMark.style.transform = `scale(${scale.toFixed(3)})`;
+      contactMark.style.opacity = (0.03 + eased * 0.05).toFixed(3);
+    }
+  }
+
+  function onScroll() {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  mqDesktop.addEventListener('change', onScroll);
+  update();
+})();
+</script>
+
+</body>
+</html>

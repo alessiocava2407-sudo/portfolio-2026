@@ -1,0 +1,44 @@
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap");
+
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter), "Inter", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), "Instrument Serif", ui-serif, Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #000;
+  color: #d4d4d4;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::selection { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+}
+
+.card-glow {
+  transition: box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-glow:hover {
+  box-shadow: var(--card-glow-shadow, 0 0 60px -15px rgba(255,255,255,0.06));
+}
+
+.scroll-progress {
+  transform-origin: left;
+  background: rgba(255, 255, 255, 0.35);
+}
