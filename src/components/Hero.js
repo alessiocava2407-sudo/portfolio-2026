@@ -9,7 +9,7 @@ export default function Hero() {
       <div>
         {/* Eyebrow label */}
         <p
-          className="hero-animate mb-12 text-[10px] font-medium uppercase tracking-[0.3em] text-neutral-500 lg:mb-16"
+          className="hero-animate mb-12 text-[10px] font-medium uppercase tracking-[0.3em] text-neutral-400 lg:mb-16"
           style={{ opacity: 0 }}
         >
           Sviluppatore &amp; Music Producer
@@ -24,7 +24,7 @@ export default function Hero() {
             <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-600">
               Index
             </span>
-            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-500">
+            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-400">
               01 / Apertura
             </span>
           </div>
@@ -48,7 +48,7 @@ export default function Hero() {
           className="hero-animate max-w-xl"
           style={{ opacity: 0 }}
         >
-          <p className="text-base leading-[1.8] text-neutral-400 lg:text-lg">
+          <p className="text-base leading-[1.8] text-neutral-300 lg:text-lg">
             Costruisco soluzioni web per problemi reali e progetto strumenti
             digitali per l&apos;industria musicale.
             <span className="text-white">

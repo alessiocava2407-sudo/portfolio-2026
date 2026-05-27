@@ -27,7 +27,7 @@ export default function ScrollRevealText() {
     <section ref={containerRef} className="relative min-h-[200vh] bg-transparent">
       <div className="sticky top-0 h-screen flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:px-24">
         <div className="max-w-[900px] mx-auto w-full">
-          <p className="text-[1.3rem] sm:text-[1.8rem] md:text-[2.2rem] lg:text-[2.5rem] font-light leading-[1.6] font-sans text-white/10 tracking-tight">
+          <p className="text-[1.3rem] sm:text-[1.8rem] md:text-[2.2rem] lg:text-[2.5rem] font-light leading-[1.6] font-sans text-white/18 tracking-tight">
             {words.map((word, i) => {
               const start = i / words.length;
               const end = start + 1 / words.length;

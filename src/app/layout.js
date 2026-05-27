@@ -27,7 +27,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="it" className={`${inter.variable} ${instrumentSerif.variable}`}>
-      <body>{children}</body>
+      <body>
+        <div className="pixel-bg" />
+        {children}
+      </body>
     </html>
   );
 }

@@ -70,8 +70,8 @@ export default function ProjectCard({
             className="absolute inset-0 opacity-[0.03]"
             style={{
               backgroundImage: `
-                linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)
+                linear-gradient(rgba(255,255,255,0.9) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.9) 1px, transparent 1px)
               `,
               backgroundSize: "40px 40px",
             }}
@@ -88,7 +88,7 @@ export default function ProjectCard({
           {/* Center icon hint */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div
-              className={`flex h-16 w-16 items-center justify-center rounded-2xl border ${style.border} bg-white/[0.03] backdrop-blur-sm`}
+              className={`flex h-16 w-16 items-center justify-center rounded-2xl border ${style.border} bg-white/[0.054] backdrop-blur-sm`}
             >
               <span className={`text-2xl font-light ${style.accent}`}>
                 {category === "bridge" && "⟡"}
@@ -118,9 +118,9 @@ export default function ProjectCard({
           {title}
         </h3>
 
-        <p className="mb-3 text-sm font-medium text-neutral-500">{subtitle}</p>
+        <p className="mb-3 text-sm font-medium text-neutral-400">{subtitle}</p>
 
-        <p className="mb-6 text-base leading-[1.8] text-neutral-400">
+        <p className="mb-6 text-base leading-[1.8] text-neutral-300">
           {description}
         </p>
 

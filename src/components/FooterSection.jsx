@@ -49,14 +49,14 @@ export default function FooterSection() {
 
         <p
           data-ft
-          className="text-neutral-500 text-base mb-14 max-w-md leading-relaxed"
+          className="text-neutral-400 text-base mb-14 max-w-md leading-relaxed"
         >
           Hai un&apos;idea, un progetto, o semplicemente vuoi fare due
           chiacchiere? Scrivimi.
         </p>
 
         <div data-ft className="flex flex-wrap gap-4 mb-24 md:mb-32">
-          <a href="mailto:alessio.cavallaro@email.com" className="footer-link">
+          <a href="mailto:alessiocava2407@gmail.com" className="footer-link">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
             </svg>

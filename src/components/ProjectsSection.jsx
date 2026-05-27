@@ -58,7 +58,7 @@ function ProjectCard({ project, index }) {
           isReversed ? "lg:order-2" : "lg:order-1"
         }`}
       >
-        <span className="font-display text-[8rem] md:text-[11rem] font-black text-white/[0.025] leading-none select-none">
+        <span className="font-display text-[8rem] md:text-[11rem] font-black text-white/[0.18] leading-none select-none">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
@@ -75,7 +75,7 @@ function ProjectCard({ project, index }) {
           </h3>
 
           {/* Description */}
-          <p className="text-sm md:text-base text-neutral-400 leading-[1.8] mb-8">
+          <p className="text-sm md:text-base text-neutral-300 leading-[1.8] mb-8">
             {project.text}
           </p>
 
@@ -149,7 +149,7 @@ export default function ProjectsSection() {
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] text-white">
             Quello che ho costruito.
           </h2>
-          <p className="text-neutral-500 text-base mt-5 max-w-lg leading-relaxed">
+          <p className="text-neutral-400 text-base mt-5 max-w-lg leading-relaxed">
             Ogni progetto nasce da un problema reale — ogni soluzione
             unisce codice, design e un pizzico di ossessione.
           </p>

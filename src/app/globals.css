@@ -8,7 +8,7 @@
   --font-serif: var(--font-instrument), "Instrument Serif", ui-serif, Georgia, serif;
 }
 
-:root { --nav-height: 64px; }
+:root { --nav-height: 64px; --card-surface: rgba(255,255,255,0.018); }
 
 *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
@@ -16,7 +16,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: #000;
-  color: #d4d4d4;
+  color: #f5f5f5;
   font-family: var(--font-sans);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -26,7 +26,63 @@ body {
   line-height: 1.6;
 }
 
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+}
+
 ::selection { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+:focus-visible {
+  outline: 2px solid rgba(147, 197, 253, 0.9);
+  outline-offset: 3px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(147, 197, 253, 0.9);
+  outline-offset: 3px;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  border: 1.2px solid rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  will-change: transform, opacity;
+  transition: opacity 180ms ease;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+.card-shine {
+  position: absolute;
+  pointer-events: none;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.12) 10%, rgba(255,255,255,0.01) 30%, transparent 60%);
+  filter: blur(18px);
+  opacity: 0.75;
+  mix-blend-mode: screen;
+  transition: left 0.28s cubic-bezier(.16,.8,.25,1), top 0.28s cubic-bezier(.16,.8,.25,1), opacity 0.35s ease;
+}
 
 .hairline {
   height: 1px;
@@ -44,4 +100,63 @@ body {
 .scroll-progress {
   transform-origin: left;
   background: rgba(255, 255, 255, 0.35);
+}
+
+@keyframes pixelPulse {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.25; }
+  100% { opacity: 0.1; }
+}
+
+.pixel-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  mix-blend-mode: screen;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  animation: pixelPulse 8s infinite ease-in-out;
+}
+
+/* Inverted/negative theme: simple global invert for monochrome design */
+.inverted {
+  filter: invert(1) hue-rotate(180deg);
+  transition: filter 320ms cubic-bezier(.16,.8,.25,1);
+  --card-surface: rgba(245,245,245,0.12);
+}
+
+/* Promote animated elements to GPU and hint the browser for smoother transforms */
+.card-glow,
+.card-shine,
+.custom-cursor,
+.scroll-progress {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: rgba(255,255,255,0.9);
+  transition: background-color 280ms cubic-bezier(.16,.8,.25,1), border-color 280ms cubic-bezier(.16,.8,.25,1);
+}
+.icon-button:hover,
+.icon-button:focus-visible {
+  background: rgba(255,255,255,0.06);
+}
+
+/* surface helper token */
+.surface {
+  background: var(--card-surface);
 }

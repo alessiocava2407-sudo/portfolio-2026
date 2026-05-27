@@ -63,7 +63,7 @@ export default function Projects() {
           <h2 className="mb-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             Selezione lavori
           </h2>
-          <p className="text-base leading-relaxed text-neutral-500">
+          <p className="text-base leading-relaxed text-neutral-400">
             Ogni progetto nasce da un&apos;esigenza reale — che sia un
             problema da automatizzare, un&apos;idea da prototipare o un ponte
             tra due discipline.

@@ -19,7 +19,7 @@ export default function Footer() {
           <h2 className="mb-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             Parliamone.
           </h2>
-          <p className="mx-auto mb-12 max-w-md text-base leading-relaxed text-neutral-500">
+          <p className="mx-auto mb-12 max-w-md text-base leading-relaxed text-neutral-400">
             Hai un progetto in mente, una collaborazione o semplicemente vuoi
             fare due chiacchiere? Scrivimi.
           </p>
@@ -31,7 +31,7 @@ export default function Footer() {
               className="btn-secondary inline-flex items-center gap-3 rounded-full px-8 py-3.5 text-sm font-medium text-neutral-300"
             >
               <svg
-                className="h-4 w-4 text-neutral-500"
+                className="h-4 w-4 text-neutral-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -73,7 +73,7 @@ export default function Footer() {
               className="btn-secondary inline-flex items-center gap-3 rounded-full px-8 py-3.5 text-sm font-medium text-neutral-300"
             >
               <svg
-                className="h-4 w-4 text-neutral-500"
+                className="h-4 w-4 text-neutral-400"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >

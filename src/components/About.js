@@ -18,10 +18,10 @@ export default function About() {
           <h2 className="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
             Dove il codice incontra
             <br />
-            <span className="text-neutral-500">il suono.</span>
+            <span className="text-neutral-400">il suono.</span>
           </h2>
 
-          <div className="space-y-6 text-base leading-[1.8] text-neutral-400 sm:text-lg">
+          <div className="space-y-6 text-base leading-[1.8] text-neutral-300 sm:text-lg">
             <p>
               Sono uno{" "}
               <span className="text-white">

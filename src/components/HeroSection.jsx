@@ -50,7 +50,7 @@ export default function HeroSection() {
         {/* Subtitle */}
         <h2
           data-anim
-          className="text-lg md:text-xl font-normal text-neutral-400 max-w-2xl mb-8 leading-relaxed"
+          className="text-lg md:text-xl font-normal text-neutral-300 max-w-2xl mb-8 leading-relaxed"
         >
           Sviluppatore Autodidatta &amp; Studente di Ingegneria Informatica
           <span className="inline-block mx-2 text-neutral-600">|</span>
@@ -60,7 +60,7 @@ export default function HeroSection() {
         {/* Intro */}
         <p
           data-anim
-          className="text-base text-neutral-500 max-w-xl mb-14 leading-[1.8]"
+          className="text-base text-neutral-400 max-w-xl mb-14 leading-[1.8]"
         >
           Costruisco soluzioni web per problemi reali e progetto strumenti
           digitali per l&apos;industria musicale. Il codice è il mio strumento,

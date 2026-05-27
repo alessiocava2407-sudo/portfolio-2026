@@ -6,7 +6,7 @@ export default function Navbar() {
     >
       {/* Logo */}
       <a
-        href="#hero"
+        href="#top"
         className="text-sm font-medium tracking-wide text-white"
       >
         A. Cavallaro
@@ -15,20 +15,20 @@ export default function Navbar() {
       {/* Center links — hidden on mobile */}
       <div className="hidden items-center gap-8 md:flex">
         <a
-          href="#chi-sono"
-          className="link-hover text-xs font-medium uppercase tracking-[0.15em] text-neutral-400 transition-colors hover:text-white"
+          href="#studio"
+          className="link-hover text-xs font-medium uppercase tracking-[0.15em] text-neutral-300 transition-colors hover:text-white"
         >
           Studio
         </a>
         <a
-          href="#progetti"
-          className="link-hover text-xs font-medium uppercase tracking-[0.15em] text-neutral-400 transition-colors hover:text-white"
+          href="#lavori"
+          className="link-hover text-xs font-medium uppercase tracking-[0.15em] text-neutral-300 transition-colors hover:text-white"
         >
           Lavori
         </a>
         <a
           href="#competenze"
-          className="link-hover text-xs font-medium uppercase tracking-[0.15em] text-neutral-400 transition-colors hover:text-white"
+          className="link-hover text-xs font-medium uppercase tracking-[0.15em] text-neutral-300 transition-colors hover:text-white"
         >
           Competenze
         </a>

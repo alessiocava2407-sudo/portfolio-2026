@@ -82,7 +82,7 @@ export default function SkillsSection() {
               className="glass rounded-2xl md:rounded-3xl p-8 md:p-10"
             >
               <div className="flex items-center gap-3 mb-8">
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] text-neutral-400">
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/[0.072] border border-white/[0.08] text-neutral-300">
                   {group.icon}
                 </div>
                 <h3 className="font-display text-lg font-semibold text-white tracking-tight">

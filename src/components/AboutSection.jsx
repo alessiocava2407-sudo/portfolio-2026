@@ -47,7 +47,7 @@ export default function AboutSection() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-          <p data-about className="text-base text-neutral-400 leading-[1.85]">
+          <p data-about className="text-base text-neutral-300 leading-[1.85]">
             Studio{" "}
             <span className="text-neutral-200">Ingegneria Informatica</span>{" "}
             all&apos;Università di Catania, ma non ho aspettato un&apos;aula per
@@ -57,7 +57,7 @@ export default function AboutSection() {
             sperimentare, sbagliare e iterare.
           </p>
 
-          <p data-about className="text-base text-neutral-400 leading-[1.85]">
+          <p data-about className="text-base text-neutral-300 leading-[1.85]">
             Il mio percorso intreccia{" "}
             <span className="text-neutral-200">
               sviluppo web e software

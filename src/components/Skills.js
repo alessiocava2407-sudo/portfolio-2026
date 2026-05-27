@@ -74,7 +74,7 @@ export default function Skills() {
                         <p className="text-sm font-medium text-neutral-200">
                           {skill.name}
                         </p>
-                        <p className="text-xs text-neutral-500">
+                        <p className="text-xs text-neutral-400">
                           {skill.detail}
                         </p>
                       </div>
