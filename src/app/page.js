@@ -125,6 +125,7 @@ const projectsData = [
     category: "AUDIO & CODE",
     accent: mono,
     gradient: "radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.072) 0%, transparent 45%)",
+    link: "https://github.com/alessiocava2407-sudo/Gesture-MIDI-Controller",
   },
   {
     id: "04",
