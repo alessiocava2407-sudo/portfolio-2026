@@ -959,7 +959,6 @@ export default function Page() {
                       {letter}
                     </motion.span>
                   ))}
-                  <motion.span variants={nameLetter} className="inline-block">.</motion.span>
                 </motion.h1>
               </motion.div>
             </motion.div>
