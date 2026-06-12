@@ -9,7 +9,9 @@ import {
   useInView,
   useMotionValue,
 } from "framer-motion";
+import ProjectsSection from "../components/ProjectsSection";
 import ScrollRevealText from "../components/ScrollRevealText";
+import FloatingDock from "../components/FloatingDock";
 import CustomCursor from "../components/CustomCursor";
 import ThemeToggle from "../components/ThemeToggle";
 
@@ -866,6 +868,7 @@ export default function Page() {
   return (
     <>
       <CustomCursor />
+      <FloatingDock />
       <motion.div className="fixed top-0 left-0 right-0 h-[2px] z-[100] scroll-progress" style={{ scaleX: smoothProgress }} />
 
       <header className="fixed top-0 inset-x-0 z-50 mix-blend-difference pointer-events-none">
