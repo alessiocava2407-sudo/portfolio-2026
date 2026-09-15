@@ -177,6 +177,42 @@ const projectsData = [
     gradient: "radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.09) 0%, transparent 50%)",
     link: "https://dimora-akis.free.nf/",
   },
+  {
+    id: "09",
+    title: "Ale & Sofi Space",
+    description: "Web app privata con scambio di messaggi real-time, tracker dell'umore, tamagotchi e notifiche push.",
+    tags: ["NEXT.JS", "SUPABASE", "REALTIME"],
+    category: "WEB APP",
+    accent: mono,
+    gradient: "radial-gradient(ellipse at 30% 70%, rgba(255,255,255,0.09) 0%, transparent 50%)",
+  },
+  {
+    id: "10",
+    title: "SmartStudio",
+    description: "Dashboard gestionale per studi musicali. Organizza brani, demo, BPM, key e file di progetto in cloud.",
+    tags: ["NEXT.JS", "SUPABASE", "TAILWIND"],
+    category: "GESTIONALE",
+    accent: mono,
+    gradient: "radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.09) 0%, transparent 50%)",
+  },
+  {
+    id: "11",
+    title: "EtnaRo",
+    description: "Sito istituzionale e vetrina per la villa vacanze EtnaRo. Tema WordPress custom per gestione gallerie e info.",
+    tags: ["WORDPRESS", "PHP", "CMS"],
+    category: "HOSPITALITY",
+    accent: mono,
+    gradient: "radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 45%)",
+  },
+  {
+    id: "12",
+    title: "Outrun AciCastello",
+    description: "Videogioco arcade in stile retrò ambientato ad Aci Castello. Sviluppato con Godot Engine 4.",
+    tags: ["GODOT", "GDSCRIPT", "GAME DEV"],
+    category: "GAME DEV",
+    accent: mono,
+    gradient: "radial-gradient(ellipse at 40% 60%, rgba(255,255,255,0.08) 0%, transparent 45%)",
+  },
 ];
 
 /* ═══════════════════════════════════════════════════════ */
@@ -666,6 +702,160 @@ function renderProjectVisual(id, accent) {
           </div>
           <div className="p-3 rounded-xl text-center bg-white/[0.108] border border-white/[0.1]">
             <span className="text-[11px] font-sans font-medium text-white/100">Prenota · 3 notti · € 267</span>
+          </div>
+        </div>
+      );
+
+    /* ── 09 — Ale & Sofi Space ── */
+    case "09":
+      return (
+        <div className="h-full w-full flex flex-col p-5 gap-3">
+          <div className={`${glassSm} px-4 py-2.5 flex items-center justify-between`}>
+            <div className="flex items-center gap-2">
+              <span className="text-[12px] font-sans font-medium text-white/100">Ale & Sofi</span>
+              <span className="text-[8px] font-sans text-white/54 px-2 py-0.5 rounded-full bg-white/[0.09]">Spazio Virtuale</span>
+            </div>
+            <div className="w-4 h-4 rounded-full bg-white/20 animate-pulse flex items-center justify-center">
+              <div className="w-1.5 h-1.5 rounded-full bg-white/90" />
+            </div>
+          </div>
+          <div className="flex-1 flex gap-2">
+            <div className={`${glassSm} flex-1 p-3 flex flex-col justify-center items-center text-center gap-2`}>
+              <span className="text-[8px] font-sans uppercase tracking-wider text-white/45">Mood Tracker</span>
+              <div className="flex gap-1.5 mt-1">
+                {["😊", "🥰", "😴", "🤩"].map((e, i) => (
+                  <span key={i} className={`text-lg ${i === 1 ? 'scale-125 opacity-100' : 'opacity-40 grayscale'} transition-transform`}>{e}</span>
+                ))}
+              </div>
+            </div>
+            <div className={`${glassSm} flex-1 p-3 flex flex-col justify-center items-center text-center gap-2`}>
+              <span className="text-[8px] font-sans uppercase tracking-wider text-white/45">Tamagotchi</span>
+              <div className="w-8 h-8 rounded-full border-2 border-white/20 flex items-center justify-center bg-white/[0.05]">
+                <span className="text-sm">🦖</span>
+              </div>
+            </div>
+          </div>
+          <div className={`${glassSm} p-3 flex items-center gap-3`}>
+            <div className="flex-1">
+              <span className="text-[9px] font-sans font-medium text-white/90 block">Messaggi in tempo reale</span>
+              <span className="text-[7px] font-sans text-white/54 block mt-0.5">Push notifications via WebPush</span>
+            </div>
+            <div className="px-3 py-1.5 rounded bg-white/[0.1] text-[8px] font-sans text-white/90">
+              Invia Abbraccio
+            </div>
+          </div>
+        </div>
+      );
+
+    /* ── 10 — SmartStudio ── */
+    case "10":
+      return (
+        <div className="h-full w-full flex flex-col p-5 gap-3">
+          <div className={`${glassSm} px-4 py-2.5 flex items-center justify-between`}>
+            <span className="text-[12px] font-sans font-medium text-white/100">SmartStudio</span>
+            <span className="text-[8px] font-sans uppercase tracking-wider text-white/45 bg-white/[0.09] px-2 py-0.5 rounded-full">Dashboard</span>
+          </div>
+          <div className="flex gap-2 mb-1">
+            {[{ label: "Brani", val: "14" }, { label: "BPM Med", val: "128" }, { label: "Demo", val: "8" }].map((s) => (
+              <div key={s.label} className={`${glassSm} flex-1 p-2 text-center`}>
+                <span className="block text-[14px] font-sans font-medium text-white/100 tabular-nums">{s.val}</span>
+                <span className="block text-[7px] font-sans uppercase tracking-wider text-white/45">{s.label}</span>
+              </div>
+            ))}
+          </div>
+          <div className={`${glassSm} flex-1 p-3`}>
+            <span className="text-[8px] font-sans uppercase tracking-wider text-white/45 block mb-2">Ultimi Progetti</span>
+            {[
+              { name: "Summer Vibes 2026", bpm: "124", key: "Am" },
+              { name: "Synthwave Demo", bpm: "110", key: "Cm" },
+              { name: "Acoustic Idea", bpm: "95", key: "G" },
+            ].map((trk, i) => (
+              <div key={i} className={`flex items-center justify-between py-1.5 ${i < 2 ? "border-b border-white/[0.04]" : ""}`}>
+                <span className="text-[9px] font-sans text-white/90">{trk.name}</span>
+                <div className="flex gap-2">
+                  <span className="text-[8px] font-sans text-white/54 bg-white/[0.05] px-1.5 rounded">{trk.bpm} BPM</span>
+                  <span className="text-[8px] font-sans text-white/54 bg-white/[0.05] px-1.5 rounded">{trk.key}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+    /* ── 11 — EtnaRo ── */
+    case "11":
+      return (
+        <div className="h-full w-full flex flex-col p-5 gap-3">
+          <div className={`${glassSm} px-4 py-2.5 flex items-center justify-between`}>
+            <div>
+              <span className="text-[12px] font-serif italic text-white/100">EtnaRo</span>
+              <span className="text-[7px] font-sans text-white/36 block">Villa & Relax</span>
+            </div>
+            <div className="flex gap-2">
+              <span className="text-[7px] font-sans uppercase tracking-wider text-white/45">Gallery</span>
+              <span className="text-[7px] font-sans uppercase tracking-wider text-white/90">Info</span>
+            </div>
+          </div>
+          <div className="flex-1 flex gap-2">
+            <div className={`${glassSm} flex-[2] relative overflow-hidden flex items-end p-2`}>
+              <div className="absolute inset-0 bg-white/[0.02]" />
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/10 to-transparent" />
+              <span className="text-[10px] font-serif italic text-white/90 relative z-10">Piscina</span>
+            </div>
+            <div className="flex-[1] flex flex-col gap-2">
+              <div className={`${glassSm} flex-1 relative overflow-hidden flex items-end p-2`}>
+                <div className="absolute inset-0 bg-white/[0.04]" />
+                <span className="text-[8px] font-sans text-white/72 relative z-10">Patio</span>
+              </div>
+              <div className={`${glassSm} flex-1 relative overflow-hidden flex items-end p-2`}>
+                <div className="absolute inset-0 bg-white/[0.03]" />
+                <span className="text-[8px] font-sans text-white/72 relative z-10">Giardino</span>
+              </div>
+            </div>
+          </div>
+          <div className={`${glassSm} px-4 py-2 flex items-center justify-between`}>
+            <span className="text-[8px] font-sans text-white/54">Villa vacanze alle pendici dell'Etna</span>
+          </div>
+        </div>
+      );
+
+    /* ── 12 — Outrun AciCastello ── */
+    case "12":
+      return (
+        <div className="h-full w-full flex flex-col p-5 gap-3">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-sans font-black italic tracking-widest text-white/90">OUTRUN</span>
+            <span className="text-[8px] font-sans font-bold text-white/54">ACICASTELLO</span>
+          </div>
+          <div className={`${glass} flex-1 relative overflow-hidden flex flex-col items-center justify-center border-white/10`}>
+            {/* Retro grid background */}
+            <div className="absolute inset-0 opacity-[0.1]" style={{
+              backgroundImage: "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+              backgroundSize: "20px 10px",
+              transform: "perspective(100px) rotateX(60deg) scale(2) translateY(20px)"
+            }} />
+            
+            {/* Godot Logo/Placeholder */}
+            <div className="relative z-10 flex flex-col items-center gap-2">
+              <div className="w-12 h-12 bg-white/[0.08] border border-white/20 rounded-xl flex items-center justify-center backdrop-blur-md">
+                <span className="text-xl">🏎️</span>
+              </div>
+              <span className="text-[8px] font-sans uppercase tracking-[0.2em] text-white/72 animate-pulse">Press Start</span>
+            </div>
+            
+            {/* Scanlines */}
+            <div className="absolute inset-0 pointer-events-none opacity-20" style={{
+              backgroundImage: "linear-gradient(rgba(0,0,0,0) 50%, rgba(255,255,255,0.1) 50%)",
+              backgroundSize: "100% 4px"
+            }} />
+          </div>
+          <div className={`${glassSm} p-2 flex justify-between items-center`}>
+            <span className="text-[7px] font-sans uppercase tracking-wider text-white/45">Godot Engine 4</span>
+            <div className="flex gap-1 text-[7px] font-sans uppercase text-white/45">
+              <span>GDScript</span>
+              <span>•</span>
+              <span>2D</span>
+            </div>
           </div>
         </div>
       );
