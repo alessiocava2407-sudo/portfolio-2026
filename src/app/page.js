@@ -1300,10 +1300,10 @@ export default function Page() {
                 viewport={revealLabel.viewport}
               >02 — Lavori selezionati</motion.span>
                   <motion.h2 className="font-serif text-[2rem] sm:text-[2.5rem] md:text-[clamp(2rem,5vw,4rem)] leading-[1.05] tracking-[-0.025em]" {...revealDeep}>
-                    Otto progetti, <span className="italic text-white/100">due discipline</span>.
+                    Dodici progetti, <span className="italic text-white/100">due discipline</span>.
                   </motion.h2>
                 </div>
-                <span className="hidden md:block text-[10px] font-sans uppercase tracking-[0.28em] text-white/36 tabular-nums">01 — 08</span>
+                <span className="hidden md:block text-[10px] font-sans uppercase tracking-[0.28em] text-white/36 tabular-nums">01 — 12</span>
               </div>
             </div>
             <div className={`${isMobile ? "flex flex-col gap-8 px-4 sm:px-6 md:px-12 py-12" : "flex-1 flex items-center overflow-hidden"}`}>
