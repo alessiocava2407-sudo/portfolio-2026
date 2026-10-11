@@ -179,15 +179,6 @@ const projectsData = [
   },
   {
     id: "09",
-    title: "Ale & Sofi Space",
-    description: "Web app privata con scambio di messaggi real-time, tracker dell'umore, tamagotchi e notifiche push.",
-    tags: ["NEXT.JS", "SUPABASE", "REALTIME"],
-    category: "WEB APP",
-    accent: mono,
-    gradient: "radial-gradient(ellipse at 30% 70%, rgba(255,255,255,0.09) 0%, transparent 50%)",
-  },
-  {
-    id: "10",
     title: "SmartStudio",
     description: "Dashboard gestionale per studi musicali. Organizza brani, demo, BPM, key e file di progetto in cloud.",
     tags: ["NEXT.JS", "SUPABASE", "TAILWIND"],
@@ -196,7 +187,7 @@ const projectsData = [
     gradient: "radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.09) 0%, transparent 50%)",
   },
   {
-    id: "11",
+    id: "10",
     title: "EtnaRo",
     description: "Sito istituzionale e vetrina per la villa vacanze EtnaRo. Tema WordPress custom per gestione gallerie e info.",
     tags: ["WORDPRESS", "PHP", "CMS"],
@@ -205,7 +196,7 @@ const projectsData = [
     gradient: "radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 45%)",
   },
   {
-    id: "12",
+    id: "11",
     title: "Outrun AciCastello",
     description: "Videogioco arcade in stile retrò ambientato ad Aci Castello. Sviluppato con Godot Engine 4.",
     tags: ["GODOT", "GDSCRIPT", "GAME DEV"],
@@ -706,49 +697,8 @@ function renderProjectVisual(id, accent) {
         </div>
       );
 
-    /* ── 09 — Ale & Sofi Space ── */
+    /* ── 09 — SmartStudio ── */
     case "09":
-      return (
-        <div className="h-full w-full flex flex-col p-5 gap-3">
-          <div className={`${glassSm} px-4 py-2.5 flex items-center justify-between`}>
-            <div className="flex items-center gap-2">
-              <span className="text-[12px] font-sans font-medium text-white/100">Ale & Sofi</span>
-              <span className="text-[8px] font-sans text-white/54 px-2 py-0.5 rounded-full bg-white/[0.09]">Spazio Virtuale</span>
-            </div>
-            <div className="w-4 h-4 rounded-full bg-white/20 animate-pulse flex items-center justify-center">
-              <div className="w-1.5 h-1.5 rounded-full bg-white/90" />
-            </div>
-          </div>
-          <div className="flex-1 flex gap-2">
-            <div className={`${glassSm} flex-1 p-3 flex flex-col justify-center items-center text-center gap-2`}>
-              <span className="text-[8px] font-sans uppercase tracking-wider text-white/45">Mood Tracker</span>
-              <div className="flex gap-1.5 mt-1">
-                {["😊", "🥰", "😴", "🤩"].map((e, i) => (
-                  <span key={i} className={`text-lg ${i === 1 ? 'scale-125 opacity-100' : 'opacity-40 grayscale'} transition-transform`}>{e}</span>
-                ))}
-              </div>
-            </div>
-            <div className={`${glassSm} flex-1 p-3 flex flex-col justify-center items-center text-center gap-2`}>
-              <span className="text-[8px] font-sans uppercase tracking-wider text-white/45">Tamagotchi</span>
-              <div className="w-8 h-8 rounded-full border-2 border-white/20 flex items-center justify-center bg-white/[0.05]">
-                <span className="text-sm">🦖</span>
-              </div>
-            </div>
-          </div>
-          <div className={`${glassSm} p-3 flex items-center gap-3`}>
-            <div className="flex-1">
-              <span className="text-[9px] font-sans font-medium text-white/90 block">Messaggi in tempo reale</span>
-              <span className="text-[7px] font-sans text-white/54 block mt-0.5">Push notifications via WebPush</span>
-            </div>
-            <div className="px-3 py-1.5 rounded bg-white/[0.1] text-[8px] font-sans text-white/90">
-              Invia Abbraccio
-            </div>
-          </div>
-        </div>
-      );
-
-    /* ── 10 — SmartStudio ── */
-    case "10":
       return (
         <div className="h-full w-full flex flex-col p-5 gap-3">
           <div className={`${glassSm} px-4 py-2.5 flex items-center justify-between`}>
@@ -782,8 +732,8 @@ function renderProjectVisual(id, accent) {
         </div>
       );
 
-    /* ── 11 — EtnaRo ── */
-    case "11":
+    /* ── 10 — EtnaRo ── */
+    case "10":
       return (
         <div className="h-full w-full flex flex-col p-5 gap-3">
           <div className={`${glassSm} px-4 py-2.5 flex items-center justify-between`}>
@@ -819,8 +769,8 @@ function renderProjectVisual(id, accent) {
         </div>
       );
 
-    /* ── 12 — Outrun AciCastello ── */
-    case "12":
+    /* ── 11 — Outrun AciCastello ── */
+    case "11":
       return (
         <div className="h-full w-full flex flex-col p-5 gap-3">
           <div className="flex items-center justify-between">
@@ -1300,10 +1250,10 @@ export default function Page() {
                 viewport={revealLabel.viewport}
               >02 — Lavori selezionati</motion.span>
                   <motion.h2 className="font-serif text-[2rem] sm:text-[2.5rem] md:text-[clamp(2rem,5vw,4rem)] leading-[1.05] tracking-[-0.025em]" {...revealDeep}>
-                    Dodici progetti, <span className="italic text-white/100">due discipline</span>.
+                    Undici progetti, <span className="italic text-white/100">due discipline</span>.
                   </motion.h2>
                 </div>
-                <span className="hidden md:block text-[10px] font-sans uppercase tracking-[0.28em] text-white/36 tabular-nums">01 — 12</span>
+                <span className="hidden md:block text-[10px] font-sans uppercase tracking-[0.28em] text-white/36 tabular-nums">01 — 11</span>
               </div>
             </div>
             <div className={`${isMobile ? "flex flex-col gap-8 px-4 sm:px-6 md:px-12 py-12" : "flex-1 flex items-center overflow-hidden"}`}>
